@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import clientes
+from django.http import HttpResponse
 # Create your views here.
 
 def inicio(request):
@@ -7,11 +8,11 @@ def inicio(request):
 
 
 def presentacion(request):
-    nombre = clientes.objects.all()
-    apellido = clientes.objects.all()
-    email = clientes.objects.all()
-
-    return render(request, "App_Tienda/presentacion.html", {"nombreC": nombre, "apellidoC": apellido, "emailC": email})
+    if request.method == "POST":
+        cliente= clientes(nombre = request.POST["nombre"], apellido = request.POST["apellido"], email= request.POST["email"])
+        cliente.save()
+        return render(request, "App_Tienda/presentacion.html")
+    return render(request, "App_Tienda/presentacion.html")
 
 
 def sucursales(request):

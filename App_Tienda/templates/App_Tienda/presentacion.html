@@ -5,10 +5,10 @@
 
 {% block titulo %}
 <h1 class="mb-5">REGISTRATE CON NOSOTROS</h1>
-<form action="/registro/" method="POST">
+<form action="presentacion" method="POST">{% csrf_token %}
     <p>Nombre: <input type="text" name="nombre"></p>
     <p>Apellido: <input type="text" name="apellido"></p>
-    <p>Email: <input type="text" name="Email"></p>
+    <p>Email: <input type="text" name="email"></p>
     <input type="submit" value="Enviar">
 </form>
 
