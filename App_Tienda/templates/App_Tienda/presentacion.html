@@ -5,4 +5,11 @@
 
 {% block titulo %}
 <h1 class="mb-5">REGISTRATE CON NOSOTROS</h1>
+<form action="/registro/" method="POST">
+    <p>Nombre: <input type="text" name="nombre"></p>
+    <p>Apellido: <input type="text" name="apellido"></p>
+    <p>Email: <input type="text" name="Email"></p>
+    <input type="submit" value="Enviar">
+</form>
+
 {% endblock %}
