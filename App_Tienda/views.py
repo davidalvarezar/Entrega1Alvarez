@@ -19,8 +19,8 @@ def sucursales(request):
     return render(request, "App_Tienda/sucursales.html")
 
 
-def nosotros(request):
-    return render(request, "App_Tienda/nosotros.html")
+def buscar(request):
+    return render(request, "App_Tienda/buscar.html")
 
 def productosa(request):
     if request.method == 'POST':

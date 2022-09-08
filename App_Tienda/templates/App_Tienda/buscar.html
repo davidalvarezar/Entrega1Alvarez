@@ -1,0 +1,12 @@
+{% extends "App_Tienda/principal.html" %}
+
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">BUSCADOR DE PRODUCTOS</h1>
+<form action="" method="POST">{% csrf_token %}
+    <p>Buscar: <input type="text" name="buscar"></p>
+    <input type="submit" value="Enviar">
+</form>
+{% endblock %}
