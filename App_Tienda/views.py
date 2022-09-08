@@ -28,3 +28,4 @@ def productosa(request):
         producto.save()
         return render(request, "App_Tienda/productosa.html")
     return render(request, "App_Tienda/productosa.html")   
+
