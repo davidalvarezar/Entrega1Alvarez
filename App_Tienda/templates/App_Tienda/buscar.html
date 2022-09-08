@@ -6,7 +6,17 @@
 {% block titulo %}
 <h1 class="mb-5">BUSCADOR DE PRODUCTOS</h1>
 <form action="" method="POST">{% csrf_token %}
-    <p>Buscar: <input type="text" name="buscar"></p>
+    <p>Nombre: <input type="text" name="nombre"></p>
     <input type="submit" value="Enviar">
 </form>
-{% endblock %}
+{% if productos %}
+    {% for productos in productos %}
+        <li>Nombre: {{productos.nombre}}</li>
+        <li>Categoria: {{productos.categoria}}</li>
+        <li>Precio: {{productos.precio}}</li>
+        {% endfor %}
+        <li>Tipo: productos</li>
+        {%endif%}
+    {% endblock %}
+    </body>
+</html>

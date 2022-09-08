@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from xml.etree.ElementInclude import include
+from App_Tienda.views import inicio
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", inicio, name = "inicio"),
     path("App_Tienda/", include("App_Tienda.urls")),
 
 ]

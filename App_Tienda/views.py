@@ -20,6 +20,13 @@ def sucursales(request):
 
 
 def buscar(request):
+    if request.method == "POST":
+        nombre = request.POST["nombre"]
+        if productos.objects.filter(nombre__contains=nombre):
+            producto = productos.objects.filter(nombre__contains=nombre)
+            return render(request,"App_Tienda/buscar.html",{"productos":producto})
+        else:    
+            return HttpResponse("material no encontrado")
     return render(request, "App_Tienda/buscar.html")
 
 def productosa(request):
