@@ -9,5 +9,6 @@ urlpatterns = [
     path('servicios/', servicios, name = "servicios"),
     path('registrarse/', registrarse, name = "registrarse"),
     path('contacto/', contacto, name = "contacto"),
+    path('ckeditor/', ckeditor, name = "ckeditor"),
     
 ]

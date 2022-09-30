@@ -17,10 +17,14 @@ from xml.etree.ElementInclude import include
 from App_Tienda.views import inicio
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", inicio, name = "inicio"),
     path("App_Tienda/", include("App_Tienda.urls")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    
 
 ]

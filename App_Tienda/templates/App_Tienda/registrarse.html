@@ -4,5 +4,11 @@
 
 
 {% block titulo %}
-<h1 class="mb-5">BIENVENIDOS A NUESTRA TIENDA</h1>
+<h1 class="home-heading op-1">Contactate con nuestro equipo</h1>
+<form action="" method="POST">{% csrf_token %}
+    <p>Nombre: <input type="text" name="nombre"></p>
+    <p>Categoria: <input type="text" name="categoria"></p>
+    <p>precio: <input type="text" name="precio"></p>
+    <input type="submit" value="Enviar">
+</form>
 {% endblock %}

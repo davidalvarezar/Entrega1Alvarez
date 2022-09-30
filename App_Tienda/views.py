@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def inicio(request):
-    return render(request, "App_Tienda/inicio.html" )
+    return render(request, "App_Tienda/inicio.html")
 
 
 '''def presentacion(request):
@@ -28,12 +28,15 @@ def servicios(request):
 
 
 def registrarse(request):
-    return render(request, "App_Tienda/registarse.html")
+    return render (request, "App_Tienda/registrarse.html")
     
 
 def contacto(request):
     return render (request, "App_Tienda/contacto.html")
 
+
+def ckeditor(request):
+    return render (request, "App_Tienda/inicio.html")
 
 '''def buscar(request):
     if request.method == "POST":
