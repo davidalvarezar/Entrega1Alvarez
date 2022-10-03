@@ -7,8 +7,9 @@ urlpatterns = [
     path('SobreNosotros/', SobreNosotros, name = "SobreNosotros"),
     path('NuestrasOficinas/', NuestrasOficinas, name = "NuestrasOficinas"),
     path('servicios/', servicios, name = "servicios"),
-    path('registrarse/', registrarse, name = "registrarse"),
     path('contacto/', contacto, name = "contacto"),
     path('ckeditor/', ckeditor, name = "ckeditor"),
-    
+    path('register/', register, name = "register"),
+    path('login/', login_request, name = "login"),
+
 ]
