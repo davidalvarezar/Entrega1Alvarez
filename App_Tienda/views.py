@@ -1,11 +1,13 @@
 from multiprocessing import AuthenticationError
-from django.shortcuts import render
-
-from App_Tienda.forms import UserRegisterForm
-from .models import clientes, productos
+from django.shortcuts import redirect, render, HttpResponse
+from .models import clientes, productos, Avatar
 from django.http import HttpResponse
+from App_Tienda.forms import UserRegisterForm, UserEditForm, AvatarFormulario
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def inicio(request):
@@ -63,4 +65,61 @@ def contacto(request):
 
 def ckeditor(request):
     return render (request, "App_Tienda/inicio.html")
+
+@login_required
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == 'POST':
+            miFormulario = UserEditForm(request.POST) 
+            if miFormulario.is_valid:  
+
+                informacion = miFormulario.cleaned_data
+            
+                #Datos que se modificarán
+                usuario.email = informacion['email']
+                usuario.password1 = informacion['password1']
+                usuario.password2 = informacion['password1']
+                usuario.save()
+
+                return render(request, "AppTienda/inicio.html") 
+    else: 
+            miFormulario= UserEditForm(initial= { 'email':usuario.email} ) 
+
+    
+    return render(request, "AppTienda/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+
+
+
+@login_required
+def agregarAvatar(request):
+    if request.method == 'POST':
+
+            miFormulario = AvatarFormulario(request.POST, request.FILES)
+
+            if miFormulario.is_valid:
+
+                u = User.objects.get(username=request.user)
+                
+                avatar = Avatar (user=u, imagen=miFormulario.cleaned_data['imagen']) 
+
+                avatar.save()
+
+                return render(request, "AppTienda/inicio.html") #Vuelvo al inicio o a donde quieran
+
+    else: 
+
+            miFormulario= AvatarFormulario() #Formulario vacio para construir el html
+
+    return render(request, "AppTienda/agregarAvatar.html", {"miFormulario":miFormulario})
+
+
+def urlImagen():
+
+    return "/media/logo.png"
+
+def logout(request):
+    logout(request)
+    return render(request, "App_Tienda/inicio.html")
 
