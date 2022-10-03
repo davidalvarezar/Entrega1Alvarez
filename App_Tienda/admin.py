@@ -7,5 +7,7 @@ admin.site.register(clientes)
 admin.site.register(SobreNosotros)
 admin.site.register(servicios)
 admin.site.register(NuestrasOficinas)
+admin.site.register(Avatar)
+
 
 
