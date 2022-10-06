@@ -13,7 +13,7 @@
     {% block titulo %}
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form.as_table}}
         <button type="submit">Iniciar Sesion</button>
     {% endblock %}
 </body>

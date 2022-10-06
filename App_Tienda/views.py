@@ -46,7 +46,9 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data.get("username")
             form.save()
-            return render(request, "App_Tienda/register.html")
+            return render(request, "App_Tienda/inicio.html", {"Mensaje":f"Bienvenido {username}"})
+        else:
+            return render(request, "App_Tienda/register.html", {"form":form, "Mensaje":"Error al registrar"})
     else:
         form = UserRegisterForm()
     return render(request, "App_Tienda/register.html", {"form":form})
@@ -120,6 +122,5 @@ def urlImagen():
     return "/media/logo.png"
 
 def logout(request):
-    logout(request)
     return render(request, "App_Tienda/inicio.html")
 

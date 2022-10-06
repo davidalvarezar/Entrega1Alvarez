@@ -111,6 +111,11 @@
 
             {% if  request.user.is_authenticated %}
                <p class="text-muted small mb-4 mb-lg-0"> Hola {{user.username}}!</p>
+               <li class=" btn btn-primary">
+                  <a href="{% url 'logout' %}">
+                     LOGOUT
+                  </a>
+               </li>
             {% endif %}
          </li>
 
