@@ -110,7 +110,8 @@
             {% endif %}
 
             {% if  request.user.is_authenticated %}
-               <p class="text-muted small mb-4 mb-lg-0"> Hola {{user.username}}!</p>
+               <h5>Hola {{user.username}}!</h5>
+               <img src="{{ avatar }}" alt="">
             {% endif %}
          </li>
 

@@ -1,6 +1,7 @@
 from multiprocessing import AuthenticationError
+from re import A
 from django.shortcuts import redirect, render, HttpResponse
-from .models import clientes, productos, Avatar
+from .models import productos, Avatar
 from django.http import HttpResponse
 from App_Tienda.forms import UserRegisterForm, UserEditForm, AvatarFormulario
 from django.contrib.auth import authenticate, login, logout
@@ -10,8 +11,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
+@login_required
 def inicio(request):
-    return render(request, "App_Tienda/inicio.html" )
+    lista = Avatar.objects.filter(user=request.user)
+    if len(lista)!=0:
+        avatar = lista[0].imagen.url
+    else:
+        avatar=""
+    
+    return render (request, "App_Tienda/inicio.html" , {"avatar":obtenerAvatar(request)})
 
 def buscar(request):
     if request.method == "POST":
@@ -49,19 +57,19 @@ def register(request):
             return render(request, "App_Tienda/register.html")
     else:
         form = UserRegisterForm()
-    return render(request, "App_Tienda/register.html", {"form":form})
+    return render (request, "App_Tienda/register.html", {"form":form , "avatar":obtenerAvatar(request)})
 
 def SobreNosotros(request):
-    return render (request, "App_Tienda/SobreNosotros.html")
+    return render (request, "App_Tienda/SobreNosotros.html", {"avatar":obtenerAvatar(request)})
 
 def NuestrasOficinas(request):
-    return render (request, "App_Tienda/NuestrasOficinas.html")
+    return render (request, "App_Tienda/NuestrasOficinas.html", {"avatar":obtenerAvatar(request)})
 
 def servicios(request):
-    return render (request, "App_Tienda/servicios.html")
+    return render (request, "App_Tienda/servicios.html", {"avatar":obtenerAvatar(request)})
 
 def contacto(request):
-    return render (request, "App_Tienda/contacto.html")
+    return render (request, "App_Tienda/contacto.html", {"avatar":obtenerAvatar(request)})
 
 def ckeditor(request):
     return render (request, "App_Tienda/inicio.html")
@@ -88,31 +96,36 @@ def editarPerfil(request):
             miFormulario= UserEditForm(initial= { 'email':usuario.email} ) 
 
     
-    return render(request, "AppTienda/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+    return render(request, "AppTienda/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario , "avatar":obtenerAvatar(request)})
 
 
 
 @login_required
 def agregarAvatar(request):
-    if request.method == 'POST':
+        if request.method == 'POST':
+                miFormulario = AvatarFormulario(request.POST, request.FILES)
+        if miFormulario.is_valid:
+            avatarViejo=Avatar.objects.filter(user=request.user)
+            if (len(avatarViejo)>0):
+                avatarViejo[0].delete()
+            avatar = Avatar (user=request.user, imagen=miFormulario.cleaned_data['imagen']) 
+            avatar.save()
 
-            miFormulario = AvatarFormulario(request.POST, request.FILES)
+            return render(request, "AppTienda/inicio.html", {'usuario':request.user, 'mensaje':'AVATAR AGRAGADO', "imagen":avatar.imagen.url}) 
 
-            if miFormulario.is_valid:
+        else: 
 
-                u = User.objects.get(username=request.user)
-                
-                avatar = Avatar (user=u, imagen=miFormulario.cleaned_data['imagen']) 
+            miFormulario= AvatarFormulario() 
 
-                avatar.save()
+        return render(request, "AppTienda/agregarAvatar.html", {"miFormulario":miFormulario, "avatar":obtenerAvatar(request)} )
 
-                return render(request, "AppTienda/inicio.html") #Vuelvo al inicio o a donde quieran
-
-    else: 
-
-            miFormulario= AvatarFormulario() #Formulario vacio para construir el html
-
-    return render(request, "AppTienda/agregarAvatar.html", {"miFormulario":miFormulario})
+def obtenerAvatar(request):
+    lista=Avatar.objects.filter(user=request.user.id)
+    if len(lista) != 0:
+        imagen=lista[0].imagen.url
+    else:
+        imagen=""
+    return imagen
 
 
 def urlImagen():
