@@ -1,21 +1,20 @@
 {% extends "App_Tienda/principal.html" %}
 
+{% load static %}
+
+
 {% block titulo %}
-<h1 class="mb-5">Agregando avatar de {{ usuario }}</h1>
+<h1 class="mb-5">Agregando Avatar de Usuario</h1>
+{% endblock %}
 
-    
-
-<form action="{% url 'agregarAvatar' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+{% block contenido_que_cambia %}
 <h1>AGREGAR AVATAR</h1>
+<form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    
     <table>
-        {{ formulario.as_table }}
+        {{ formulario as table }}
     </table>
-    
-    
-
-    <button type="submit" value="Enviar">AGREGAR AVATAR</button>
-
-
+    <button type="submit">AGREGAR AVATAR</button>
 </form>
 
 {% endblock %}
