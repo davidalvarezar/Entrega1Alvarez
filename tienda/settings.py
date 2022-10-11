@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'App_Tienda',
     'ckeditor',
     'ckeditor_uploader',
+    'App_Mensajeria',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,6 @@
 from multiprocessing import AuthenticationError
 from django.shortcuts import redirect, render, HttpResponse
-from .models import clientes, productos, Avatar
+from .models import SobreNosotros, servicios, NuestrasOficinas, Avatar
 from django.http import HttpResponse
 from App_Tienda.forms import UserRegisterForm, UserEditForm, AvatarFormulario
 from django.contrib.auth import authenticate, login, logout
@@ -13,15 +13,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def inicio(request):
     return render(request, "App_Tienda/inicio.html" )
 
-def buscar(request):
-    if request.method == "POST":
-        nombre = request.POST["nombre"]
-        if productos.objects.filter(nombre__contains=nombre):
-            producto = productos.objects.filter(nombre__contains=nombre)
-            return render(request,"App_Tienda/buscar.html",{"productos":producto})
-        else:    
-            return HttpResponse("material no encontrado")
-    return render(request, "App_Tienda/buscar.html")
 
 def login_request(request):
     if request.method == 'POST':
@@ -40,6 +31,7 @@ def login_request(request):
     form = AuthenticationForm()
     return render(request, "App_Tienda/login.html", {"form":form})
 
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -51,17 +43,24 @@ def register(request):
         form = UserRegisterForm()
     return render(request, "App_Tienda/register.html", {"form":form})
 
+
 def SobreNosotros(request):
     return render (request, "App_Tienda/SobreNosotros.html")
+    
 
 def NuestrasOficinas(request):
     return render (request, "App_Tienda/NuestrasOficinas.html")
 
-def servicios(request):
-    return render (request, "App_Tienda/servicios.html")
+
+def NuestrosServicios(request):
+    services = servicios.objects.all()
+    print(services)
+    return render (request, "App_Tienda/servicios.html", {"services": services})
+
 
 def contacto(request):
     return render (request, "App_Tienda/contacto.html")
+
 
 def ckeditor(request):
     return render (request, "App_Tienda/inicio.html")

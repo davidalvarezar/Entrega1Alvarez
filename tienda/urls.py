@@ -25,6 +25,8 @@ urlpatterns = [
     path("", inicio, name = "inicio"),
     path("App_Tienda/", include("App_Tienda.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("App_Mensajeria/", include("App_Mensajeria.urls")),
+    
     
 
 ]
