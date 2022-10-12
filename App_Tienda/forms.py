@@ -5,6 +5,18 @@ from django.contrib.auth.models import  User
 
 
 
+class FormSobreNosotros(forms.Form):
+    ingreso = forms.CharField(label="Ingresar")
+
+
+class FormNuestrasOficinas(forms.Form):
+    ingreso = forms.CharField(label="Ingresar")
+
+
+class FormNuestrosServicios(forms.Form):
+    ingreso = forms.CharField(label="Ingresar")
+
+
     
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(label="Nombre de usuario", max_length=50)

@@ -10,29 +10,29 @@ from django.template.defaultfilters import slugify
 
 class SobreNosotros(models.Model):
     titulo = RichTextField(max_length=200)
-    subtitulo = RichTextField(max_length=200)
-    cuerpo = RichTextField(max_length=20000)
-    autor = RichTextField(max_length=200)
-    fecha = RichTextField(max_length=200)
-    imagen = RichTextField(max_length=200)
-    
-
-class servicios(models.Model):
-    titulo = RichTextField(max_length=200)
-    subtitulo = RichTextField(max_length=200)
+    subtitulo = RichTextField(max_length=20000)
     cuerpo = RichTextField(max_length=20000)
     autor = RichTextField(max_length=200)
     imagen = RichTextField(max_length=200)
     fecha = models.DateTimeField()
     
 
-class NuestrasOficinas(models.Model):
-    titulo = RichTextField(max_length=200)
-    subtitulo = RichTextField(max_length=200)
-    cuerpo = RichTextField(max_length=20000)
+class servicios(models.Model):
+    titulo = RichTextField(max_length=200000)
+    subtitulo = RichTextField(max_length=200000)
+    cuerpo = RichTextField(max_length=200000000)
     autor = RichTextField(max_length=200)
-    fecha = RichTextField(max_length=200)
     imagen = RichTextField(max_length=200)
+    fecha = models.DateTimeField()
+    
+
+class NuestrasOficinas(models.Model):
+    titulo = RichTextField(max_length=200000)
+    subtitulo = RichTextField(max_length=200000)
+    cuerpo = RichTextField(max_length=200000)
+    autor = RichTextField(max_length=200)
+    imagen = RichTextField(max_length=200)
+    fecha = models.DateTimeField()
 
 
 class Avatar(models.Model):

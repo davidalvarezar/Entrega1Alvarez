@@ -1,0 +1,25 @@
+{% for nos in nosotros %}
+
+    
+    
+
+    <div class = "body">
+
+        <h1>{{ nos.titulo|safe }}</h1>
+
+        <h2>{{ nos.subtitulo|safe }}</h2>
+
+        {{ nos.cuerpo|safe }}
+
+        {{ nos.autor|safe }}
+
+        {{ nos.imagen_upload|safe }}
+
+        <img src="http://www.acs-auditores.cl/images/nuestraempresa.png"><img>
+
+
+        
+    </div>
+
+    
+{% endfor %}

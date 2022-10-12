@@ -44,22 +44,35 @@ def register(request):
     return render(request, "App_Tienda/register.html", {"form":form})
 
 
-def SobreNosotros(request):
-    return render (request, "App_Tienda/SobreNosotros.html")
+def SobreNosotros_uno(request):
+    return render (request, "App_Tienda/SobreNosotros_uno.html")
+
+
+def ckSobreNosotros(request):
+    nosotros = SobreNosotros.objects.all()
+    return render(request, "App_Tienda/ckeditorsobrenosotros.html", {"nosotros":nosotros})
+
     
 
-def NuestrasOficinas(request):
+def NuestrasOficinas_uno(request):
     return render (request, "App_Tienda/NuestrasOficinas.html")
 
 
+def ckNuestrasOficinas(request):
+    ofi = NuestrasOficinas.objects.all()
+    return render (request, "App_Tienda/ckeditornuestrasoficinas.html", {"ofi": ofi})
+    
+
 def NuestrosServicios(request):
-    services = servicios.objects.all()
-    print(services)
-    return render (request, "App_Tienda/servicios.html", {"services": services})
+
+    return render (request, "App_Tienda/servicios.html")
 
 
-def contacto(request):
-    return render (request, "App_Tienda/contacto.html")
+def ckNuestrosServicios(request):
+    services=servicios.objects.all()
+    return render(request, "App_Tienda/ckNuestrosServicios.html", {"services":services})
+    
+
 
 
 def ckeditor(request):

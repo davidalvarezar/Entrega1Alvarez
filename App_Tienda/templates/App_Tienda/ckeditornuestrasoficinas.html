@@ -1,0 +1,19 @@
+{% for ofi in ofi %}
+
+    
+    
+
+    <div class = "body">
+
+        <h1>{{ ofi.titulo|safe }}</h1>
+
+        <h2>{{ ofi.cuerpo|safe }}</h2>
+
+        {{ ofi.autor|safe }}
+
+        {{ ofi.imagen_upload|safe }}
+
+        <img src="https://www.pwc.com.ar/es/assets/image/oficinaba.jpg"><img>
+    </div>
+
+{% endfor %}
