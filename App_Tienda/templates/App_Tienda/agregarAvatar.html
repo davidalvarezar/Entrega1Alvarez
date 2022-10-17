@@ -12,7 +12,7 @@
 <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
     
     <table>
-        {{ formulario as table }}
+        {{ formulario.as_table }}
     </table>
     <button type="submit">AGREGAR AVATAR</button>
 </form>

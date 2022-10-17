@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+{% block content  %}
+
+<h1>
+Bienvenido a tu bandeja de entrada {{user}} 
+</h1>
+
+{% for inbox in inbox %}
+<div class = "div_inbox">
+
+    {% for second_user in inbox.canalusuario_set.all %}
+    
+    {% if second_user.usuario == request.user %}
+
+    {% else %}
+    <a href="{% url 'detailms' second_user.usuario.username %}">
+        <p>
+            {{second_user.usuario}}
+        </p>
+        <small>
+            ({{inbox.canalmensaje_set.count}}) Mensajes
+        </small>
+    </a>
+
+    {% endif %}
+    
+    {% endfor %}
+
+    {% if inbox.canalmensaje_set.count != 0 %}
+        <div class = "div_ms_inbox">
+        
+            {% with ultimo_mensaje=inbox.canalmensaje_set.last %}
+            <p>
+                Mensaje: {{ultimo_mensaje.texto}}
+            </p>
+
+            <p>
+                Enviado por: {{ultimo_mensaje.usuario}}
+            </p>
+
+            {% endwith %}
+        </div>
+    {% else %}
+        <p>
+            No hay mensajes
+        </p>
+    {% endif %}
+
+   
+
+</div>
+
+{% empty %}
+<h2>
+    Bandeja de entrada vacia
+</h2>
+
+{% endfor %}
+
+<style>
+
+.div_inbox{
+    width: 90%;
+    margin: 10px auto;
+    background: #fff
+    border-radius 5px;
+    border: 3px solid #e6e6e6;
+    padding: 5px;
+}
+
+</style>
+
+{% endblock %}
