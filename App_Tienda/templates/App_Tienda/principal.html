@@ -103,14 +103,23 @@
                {% if not request.user.is_authenticated %}
             </li>
          </li>
-         <li class="btn btn-primary">
+         <li class="to-section">
             <a href="{% url 'login' %}">
             LOGIN
             </a>
             {% endif %}
 
             {% if  request.user.is_authenticated %}
-               <p class="text-muted small mb-4 mb-lg-0"> Hola {{user.username}}!</p>
+               <img height="40" src="{{ avatar }}" alt="" /> 
+               <h4>Hola {{ user.username }}</h4>
+               
+               
+               
+               <li class=" btn btn-info">
+                  <a href="{% url 'logout' %}">
+                     LOGOUT
+                  </a>
+               </li>
             {% endif %}
          </li>
 
@@ -280,7 +289,7 @@
             <div class="col-md-4 col-sm-12 feature-column">
                
                <div class="feature-info">
-                  <h4>Asesoría</h4>
+                  <h4>Consultoría</h4>
                   <p class="feature-description">Creamos soluciones para impulsar el crecimiento y competitividad de su negocio.</p>
                </div>
             </div>

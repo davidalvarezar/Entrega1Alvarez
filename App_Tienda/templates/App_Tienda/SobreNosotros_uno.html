@@ -8,14 +8,14 @@
 
 
 <body>
-    <form action = "{% url 'ckSobreNosotros' %}" method="GET"> 
+    <form action = "{% url 'ckeditorSobreNosotros' %}" method="GET"> 
 
 
         <table>
             {{ formulario.as_table }}
         </table>
 
-        <button type = "submit"> INGRESAR </button>
+        <button type = "submit" class="btn btn-info"> INGRESAR </button>
 {% endblock %}
 </body>
 

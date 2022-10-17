@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'App_Tienda',
     'ckeditor',
     'ckeditor_uploader',
-    'App_Mensajeria',
+    
 ]
 
 MIDDLEWARE = [
@@ -198,3 +198,7 @@ CKEDITOR_CONFIGS = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'App_Tienda/login'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

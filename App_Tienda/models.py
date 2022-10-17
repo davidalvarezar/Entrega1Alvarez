@@ -8,29 +8,31 @@ from django.template.defaultfilters import slugify
 
 # Create your models here.
 
-class SobreNosotros(models.Model):
-    titulo = RichTextField(max_length=200)
+class Nosotros(models.Model):
+    titulo = RichTextField(max_length=20000)
     subtitulo = RichTextField(max_length=20000)
-    cuerpo = RichTextField(max_length=20000)
-    autor = RichTextField(max_length=200)
+    cuerpo = RichTextField(max_length=200000)
+    autor = RichTextField(max_length=2000)
     imagen = RichTextField(max_length=200)
     fecha = models.DateTimeField()
     
 
-class servicios(models.Model):
+
+class services(models.Model):
     titulo = RichTextField(max_length=200000)
     subtitulo = RichTextField(max_length=200000)
     cuerpo = RichTextField(max_length=200000000)
-    autor = RichTextField(max_length=200)
+    autor = RichTextField(max_length=20000)
     imagen = RichTextField(max_length=200)
     fecha = models.DateTimeField()
     
 
-class NuestrasOficinas(models.Model):
+
+class Oficinas(models.Model):
     titulo = RichTextField(max_length=200000)
     subtitulo = RichTextField(max_length=200000)
     cuerpo = RichTextField(max_length=200000)
-    autor = RichTextField(max_length=200)
+    autor = RichTextField(max_length=2000)
     imagen = RichTextField(max_length=200)
     fecha = models.DateTimeField()
 
@@ -39,7 +41,7 @@ class Avatar(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
-    imagen = models.ImageField(upload_to='avatares', null=True, blank = True)
+    imagen = models.ImageField(upload_to='avatares')
 
     def __str__(self):
         return f"Imagen de: {self.user.username}"

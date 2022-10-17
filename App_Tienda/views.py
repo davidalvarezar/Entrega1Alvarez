@@ -1,8 +1,8 @@
 from multiprocessing import AuthenticationError
 from django.shortcuts import redirect, render, HttpResponse
-from .models import SobreNosotros, servicios, NuestrasOficinas, Avatar
+from .models import*
 from django.http import HttpResponse
-from App_Tienda.forms import UserRegisterForm, UserEditForm, AvatarFormulario
+from App_Tienda.forms import FormSobreNosotros, FormNuestrasOficinas, FormNuestrosServicios, UserRegisterForm, UserEditForm, AvatarForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -11,7 +11,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def inicio(request):
-    return render(request, "App_Tienda/inicio.html" )
+    
+    return render(request, "App_Tienda/inicio.html", {"avatar":obtenerAvatar(request)})
 
 
 def login_request(request):
@@ -28,8 +29,9 @@ def login_request(request):
                 return render(request, "App_Tienda/login.html")
         else:    
             return render(request, "App_Tienda/login.html")
-    form = AuthenticationForm()
-    return render(request, "App_Tienda/login.html", {"form":form})
+    else:
+        form = AuthenticationForm()
+        return render(request, "App_Tienda/login.html", {"form":form , "avatar":obtenerAvatar(request)})
 
 
 def register(request):
@@ -38,19 +40,22 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data.get("username")
             form.save()
-            return render(request, "App_Tienda/register.html")
+            return render(request, "App_Tienda/inicio.html", {"Mensaje":f"Bienvenido {username}"})
+        else:
+            return render(request, "App_Tienda/register.html", {"form":form, "Mensaje":"Error al registrar"})
     else:
         form = UserRegisterForm()
     return render(request, "App_Tienda/register.html", {"form":form})
+
 
 
 def SobreNosotros_uno(request):
     return render (request, "App_Tienda/SobreNosotros_uno.html")
 
 
-def ckSobreNosotros(request):
-    nosotros = SobreNosotros.objects.all()
-    return render(request, "App_Tienda/ckeditorsobrenosotros.html", {"nosotros":nosotros})
+def ckeditorSobreNosotros(request):
+    nosotros = Nosotros.objects.all()
+    return render(request, "App_Tienda/ckeditorsobrenosotros.html", {"nosotros": nosotros})
 
     
 
@@ -59,20 +64,30 @@ def NuestrasOficinas_uno(request):
 
 
 def ckNuestrasOficinas(request):
-    ofi = NuestrasOficinas.objects.all()
+    ofi = Oficinas.objects.all()
     return render (request, "App_Tienda/ckeditornuestrasoficinas.html", {"ofi": ofi})
     
 
 def NuestrosServicios(request):
-
     return render (request, "App_Tienda/servicios.html")
 
 
 def ckNuestrosServicios(request):
-    services=servicios.objects.all()
-    return render(request, "App_Tienda/ckNuestrosServicios.html", {"services":services})
+    serv = services.objects.all()
+    return render(request, "App_Tienda/ckNuestrosServicios.html", {"serv":serv})
     
 
+def SobreNosotros(request):
+    return render (request, "App_Tienda/SobreNosotros.html", {"avatar":obtenerAvatar(request)})
+
+def NuestrasOficinas(request):
+    return render (request, "App_Tienda/NuestrasOficinas.html", {"avatar":obtenerAvatar(request)})
+
+def servicios(request):
+    return render (request, "App_Tienda/servicios.html" , {"avatar":obtenerAvatar(request)})
+
+def contacto(request):
+    return render (request, "App_Tienda/contacto.html" , {"avatar":obtenerAvatar(request)})
 
 
 def ckeditor(request):
@@ -100,31 +115,37 @@ def editarPerfil(request):
             miFormulario= UserEditForm(initial= { 'email':usuario.email} ) 
 
     
-    return render(request, "AppTienda/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+    return render(request, "AppTienda/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario })
 
 
 
 @login_required
 def agregarAvatar(request):
     if request.method == 'POST':
+        formulario=AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            avatarViejo=Avatar.objects.filter(user=request.user)
+            if(len(avatarViejo)>0):
+                avatarViejo.delete()
 
-            miFormulario = AvatarFormulario(request.POST, request.FILES)
+            avatar=Avatar(user=request.user, imagen=formulario.cleaned_data['imagen'])
+            avatar.save()
+            return render(request, 'App_Tienda/inicio.html', {'usuario':request.user, 'mensaje':'AVATR AGREGADO EXITOSAMENTE', "imagen":avatar.imagen.url})
+        else:
+            return render(request, 'App_Tienda/agregarAvatar.html', {'formulario':formulario, 'mensaje':'FORMULARIO INVALIDO'})
 
-            if miFormulario.is_valid:
+    else:
+        formulario=AvatarForm()
+        return render(request, "App_Tienda/agregarAvatar.html", {"formulario":formulario, "usuario":request.user, "avatar":obtenerAvatar(request) })
 
-                u = User.objects.get(username=request.user)
-                
-                avatar = Avatar (user=u, imagen=miFormulario.cleaned_data['imagen']) 
 
-                avatar.save()
-
-                return render(request, "AppTienda/inicio.html") #Vuelvo al inicio o a donde quieran
-
-    else: 
-
-            miFormulario= AvatarFormulario() #Formulario vacio para construir el html
-
-    return render(request, "AppTienda/agregarAvatar.html", {"miFormulario":miFormulario})
+def obtenerAvatar(request):
+    lista=Avatar.objects.filter(user=request.user.id)
+    if len(lista)!=0:
+        imagen=lista[0].imagen.url
+    else:
+        imagen="/media/avatares/defecto.png"
+    return imagen
 
 
 def urlImagen():
@@ -132,6 +153,5 @@ def urlImagen():
     return "/media/logo.png"
 
 def logout(request):
-    logout(request)
     return render(request, "App_Tienda/inicio.html")
 
