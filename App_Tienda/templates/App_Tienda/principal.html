@@ -93,15 +93,21 @@
                   </a>
                </li>
             </li>
+            <li class="to-section">
+               <a href="{% url 'contacto' %}">
+                  CONTACTANOS
+               </a>
+            </li>
 
-
+            {% if not request.user.is_authenticated %}
             </li>
             <li class="to-section">
                <a href="{% url 'register' %}">
                   REGISTRARSE
                </a>
-               {% if not request.user.is_authenticated %}
             </li>
+            {% endif %}
+               {% if not request.user.is_authenticated %}
          </li>
          <li class="btn btn-primary">
             <a href="{% url 'login' %}">
@@ -110,26 +116,17 @@
             {% endif %}
 
             {% if  request.user.is_authenticated %}
-               <img height="40" src="{{ avatar }}" alt="" /> 
-               <h4>Hola {{ user.username }}</h4>
-               
-               
-               
-               <li class=" btn btn-primary">
+                
+                <h4> Hola {{ user.username }} <img height="40" src="{{ avatar }}" alt="" /> </h4>
+                
+                <li class="btn btn-primary">
                   <a href="{% url 'logout' %}">
-                     LOGOUT
+                  CERRAR SESION
                   </a>
                </li>
-            {% endif %}
          </li>
-
-               <li class="to-section">
-                  <a href="{% url 'contacto' %}">
-                     Contáctanos
-                  </a>
-               </li>
-            </ul>
-         </div>
+         {% endif %}
+       
          <!-- /.navbar-collapse -->
       </div>
       <!-- /.container -->

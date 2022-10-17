@@ -24,6 +24,8 @@ class UserEditForm(UserCreationForm):
     email = forms.EmailField(label="Modificar E-mail")
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput) 
+    first_name=forms.CharField(label="Modificar Nombre")
+    last_name=forms.CharField(label="Modificar Apellido")
 
 
     class Meta:
