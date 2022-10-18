@@ -58,3 +58,29 @@ class Avatar(models.Model):
         return f"Imagen de: {self.user.username}"
 
 
+class Nosotros(models.Model):
+    titulo = RichTextField(max_length=20000)
+    subtitulo = RichTextField(max_length=20000)
+    cuerpo = RichTextField(max_length=200000)
+    autor = RichTextField(max_length=2000)
+    imagen = RichTextField(max_length=200)
+    fecha = models.DateTimeField()
+
+class services(models.Model):
+    titulo = RichTextField(max_length=200000)
+    subtitulo = RichTextField(max_length=200000)
+    cuerpo = RichTextField(max_length=200000000)
+    autor = RichTextField(max_length=20000)
+    imagen = RichTextField(max_length=200)
+    fecha = models.DateTimeField()
+
+class Oficinas(models.Model):
+    titulo = RichTextField(max_length=200000)
+    subtitulo = RichTextField(max_length=200000)
+    cuerpo = RichTextField(max_length=200000)
+    autor = RichTextField(max_length=2000)
+    imagen = RichTextField(max_length=200)
+    fecha = models.DateTimeField()
+
+
+

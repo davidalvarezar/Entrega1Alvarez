@@ -5,10 +5,16 @@
 
 {% block titulo %}
 <h4 class="home-heading op-1">Nuestros Servicios</h4>
-<form action="" method="POST">{% csrf_token %}
-    <p>Nombre: <input type="text" name="nombre"></p>
-    <p>Categoria: <input type="text" name="categoria"></p>
-    <p>precio: <input type="text" name="precio"></p>
-    <input type="submit" value="Enviar">
-</form>
+
+
+<body>
+    <form action = "{% url 'ckNuestrosServicios' %}" method="GET"> 
+
+
+        <table>
+            {{ formulario.as_table }}
+        </table>
+
+        <button type = "submit" class="btn btn-info"> INGRESAR </button>
 {% endblock %}
+</body>

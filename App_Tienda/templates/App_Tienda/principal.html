@@ -78,25 +78,20 @@
                   </a>
                </li>
                <li class="to-section">
-                  <a href="{% url 'SobreNosotros' %}">
+                  <a href="{% url 'SobreNosotros_uno' %}">
                      SOBRE NOSOTROS
                   </a>
                </li>
                <li class="to-section">
-                  <a href="{% url 'servicios' %}">
+                  <a href="{% url 'NuestrosServicios' %}">
                      SERVICIOS
                   </a>
                </li>
                <li class="to-section">
-                  <a href="{% url 'NuestrasOficinas' %}">
+                  <a href="{% url 'NuestrasOficinas_uno' %}">
                      NUESTRAS OFICINAS
                   </a>
                </li>
-            </li>
-            <li class="to-section">
-               <a href="{% url 'contacto' %}">
-                  CONTACTANOS
-               </a>
             </li>
 
             {% if not request.user.is_authenticated %}
@@ -107,26 +102,38 @@
                </a>
             </li>
             {% endif %}
-               {% if not request.user.is_authenticated %}
+            {% if not request.user.is_authenticated %}
          </li>
-         <li class="btn btn-primary">
+         <li class=" btn btn-info">
             <a href="{% url 'login' %}">
             LOGIN
             </a>
             {% endif %}
 
             {% if  request.user.is_authenticated %}
-                
-                <h4> Hola {{ user.username }} <img height="40" src="{{ avatar }}" alt="" /> </h4>
-                
-                <li class="btn btn-primary">
+               <img height="40" src="{{ avatar }}" alt="" /> 
+               <h4>Hola {{ user.username }}</h4>
+               
+               
+               
+               <li class=" btn btn-info">
                   <a href="{% url 'logout' %}">
-                  CERRAR SESION
+                     LOGOUT
                   </a>
                </li>
+            
          </li>
-         {% endif %}
-       
+      </li>
+      <li class="btn btn-info">
+         <a href="{% url 'inbox' %}">
+         Bandeja de Entrada
+         </a>
+      </li>
+</li>
+{% endif %}
+            
+            </ul>
+         </div>
          <!-- /.navbar-collapse -->
       </div>
       <!-- /.container -->
@@ -268,7 +275,13 @@
 </section>
 <!-- End Home Revolution Slider Parallax Section -->
 
+
+
 <div class="site-wrapper content">
+
+{% block formulario %}
+
+{% endblock %}
    
    <!-- Start Features Section -->
    <section id="features">
@@ -284,7 +297,7 @@
             <div class="col-md-4 col-sm-12 feature-column">
                
                <div class="feature-info">
-                  <h4>Asesoría</h4>
+                  <h4>Consultoría</h4>
                   <p class="feature-description">Creamos soluciones para impulsar el crecimiento y competitividad de su negocio.</p>
                </div>
             </div>
