@@ -1,6 +1,6 @@
 from multiprocessing import AuthenticationError
 from django.shortcuts import redirect, render, HttpResponse
-from .models import Nosotros, Oficinas, clientes, productos, Avatar, services
+from .models import Nosotros, Oficinas, Avatar, services
 from django.http import HttpResponse
 from App_Tienda.forms import UserRegisterForm, UserEditForm, AvatarForm, FormNuestrasOficinas, FormSobreNosotros, FormNuestrosServicios
 from django.contrib.auth import authenticate, login, logout
@@ -109,25 +109,25 @@ def ckeditor(request):
 @login_required
 def editarPerfil(request):
 
-    usuario = request.user
+    User = request.user
 
     if request.method == 'POST':
-        form = UserEditForm(request.POST)
-        if form.is_valid:
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid:
 
-            informacion = form.cleaned_data
+            informacion = miFormulario.cleaned_data
 
             # Datos que se modificarán
-            usuario.email = informacion['email']
-            usuario.password1 = informacion['password1']
-            usuario.password2 = informacion['password1']
-            usuario.save()
+            User.email = informacion['email']
+            User.password1 = informacion['password1']
+            User.password2 = informacion['password1']
+            User.save()
 
             return render(request, "AppTienda/editarPerfil.html")
     else:
-        form = UserEditForm(initial={'email': usuario.email})
+        miFormulario = UserEditForm(initial={'email': User.email})
 
-    return render(request, "AppTienda/editarPerfil.html", {"form": form, "usuario": usuario})
+    return render(request, "AppTienda/editarPerfil.html", {"miFormulario": miFormulario, "usuario": User})
 
 
 @login_required
