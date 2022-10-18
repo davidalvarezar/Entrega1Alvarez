@@ -1,0 +1,19 @@
+{% for sv in serv %}
+
+    
+    
+
+    <div class = "body">
+
+        <h1>{{ sv.titulo|safe }}</h1>
+
+        <h2>{{ sv.cuerpo|safe }}</h2>
+
+        {{ sv.autor|safe }}
+
+    
+
+        <img src="https://uss.com.ar/corporativo/wp-content/uploads/2019/05/Consultor%C3%ADa-de-riesgos.jpg"><img>
+    </div>
+
+{% endfor %}

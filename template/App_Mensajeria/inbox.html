@@ -3,9 +3,12 @@
 
 {% block content  %}
 
-<h1>
-Bienvenido a tu bandeja de entrada {{user}} 
-</h1>
+    <h1>
+            
+            Bienvenido a tu bandeja de entrada <div id="box1"> {{user}} </div>
+        </h1>
+
+
 
 {% for inbox in inbox %}
 <div class = "div_inbox">
@@ -70,6 +73,17 @@ Bienvenido a tu bandeja de entrada {{user}}
     padding: 5px;
 }
 
+
+#box1{
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}	
+#box1 p::first-letter {
+	font-size: 80%;text-transform: capitalize;
+}
 </style>
+
+
+
 
 {% endblock %}

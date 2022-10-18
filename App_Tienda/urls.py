@@ -20,6 +20,12 @@ urlpatterns = [
     path('editarPerfil', views.editarPerfil, name="editarPerfil"),
     path('logout', LogoutView.as_view(template_name = 'App_Tienda/logout.html'), name = 'logout'),
     path('agregarAvatar/', views.agregarAvatar, name='agregarAvatar'),
+    path('SobreNosotros_uno/', views.SobreNosotros_uno, name = "SobreNosotros_uno"),
+    path('ckeditorSobreNosotros/', views.ckeditorSobreNosotros, name = "ckeditorSobreNosotros"),
+    path('NuestrasOficinas_uno/', views.NuestrasOficinas_uno, name = "NuestrasOficinas_uno"),
+    path('ckNuestrasOficinas/', views.ckNuestrasOficinas, name = "ckNuestrasOficinas"),
+    path('NuestrosServicios/', views.NuestrosServicios, name = "NuestrosServicios"),
+    path('ckNuestrosServicios/', views.ckNuestrosServicios, name = "ckNuestrosServicios"),
 
 
 ]

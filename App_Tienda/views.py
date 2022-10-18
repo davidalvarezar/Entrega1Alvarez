@@ -1,8 +1,8 @@
 from multiprocessing import AuthenticationError
 from django.shortcuts import redirect, render, HttpResponse
-from .models import clientes, productos, Avatar
+from .models import Nosotros, Oficinas, clientes, productos, Avatar, services
 from django.http import HttpResponse
-from App_Tienda.forms import UserRegisterForm, UserEditForm, AvatarForm
+from App_Tienda.forms import UserRegisterForm, UserEditForm, AvatarForm, FormNuestrasOficinas, FormSobreNosotros, FormNuestrosServicios
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -57,6 +57,33 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, "App_Tienda/register.html", {"form": form})
+
+def SobreNosotros_uno(request):
+    return render (request, "App_Tienda/SobreNosotros_uno.html")
+
+
+def ckeditorSobreNosotros(request):
+    nosotros = Nosotros.objects.all()
+    return render(request, "App_Tienda/ckeditorsobrenosotros.html", {"nosotros": nosotros})
+
+    
+
+def NuestrasOficinas_uno(request):
+    return render (request, "App_Tienda/NuestrasOficinas.html")
+
+
+def ckNuestrasOficinas(request):
+    ofi = Oficinas.objects.all()
+    return render (request, "App_Tienda/ckeditornuestrasoficinas.html", {"ofi": ofi})
+    
+
+def NuestrosServicios(request):
+    return render (request, "App_Tienda/servicios.html")
+
+
+def ckNuestrosServicios(request):
+    serv = services.objects.all()
+    return render(request, "App_Tienda/ckNuestrosServicios.html", {"serv":serv})
 
 
 def SobreNosotros(request):
@@ -127,7 +154,7 @@ def agregarAvatar(request):
 def obtenerAvatar(request):
     lista = Avatar.objects.filter(user=request.user.id)
     if len(lista) != 0:
-        imagen = lista[0].imagen.url
+        imagen=lista[0].imagen.url
     else:
         imagen = "/media/avatares/defecto.png"
     return imagen
