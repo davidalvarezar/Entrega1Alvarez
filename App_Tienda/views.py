@@ -141,9 +141,7 @@ def obtenerAvatar(request):
     return imagen
 
 
-def urlImagen():
 
-    return "/media/logo1.png"
 
 
 def logout(request):
