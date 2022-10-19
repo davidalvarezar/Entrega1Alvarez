@@ -111,8 +111,10 @@
             {% endif %}
 
             {% if  request.user.is_authenticated %}
-               <img height="40" src="{{ avatar }}" alt="" /> 
-               <h4>Hola {{ user.username }}</h4>
+               <div>
+                  <img height="40" src="{{ avatar }}" > 
+                  <h4>Hola {{ user.username }}</h4>
+               </div>
                
                
                

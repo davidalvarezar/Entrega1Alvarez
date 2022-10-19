@@ -42,7 +42,7 @@ def login_request(request):
             return render(request, "App_Tienda/inicio.html", {"Mensaje": "Usuario o contraseña incorrectos"})
     else:
         form = AuthenticationForm()
-        return render(request, "App_Tienda/login.html", {"form": form, "avatar": obtenerAvatar(request)})
+        return render(request, "App_Tienda/login.html", {"form": form})
 
 
 def register(request):
@@ -59,7 +59,7 @@ def register(request):
     return render(request, "App_Tienda/register.html", {"form": form})
 
 def SobreNosotros_uno(request):
-    return render (request, "App_Tienda/SobreNosotros_uno.html")
+    return render (request, "App_Tienda/SobreNosotros_uno.html", {"avatar": obtenerAvatar(request)})
 
 
 def ckeditorSobreNosotros(request):
@@ -69,7 +69,7 @@ def ckeditorSobreNosotros(request):
     
 
 def NuestrasOficinas_uno(request):
-    return render (request, "App_Tienda/NuestrasOficinas.html")
+    return render (request, "App_Tienda/NuestrasOficinas.html", {"avatar": obtenerAvatar(request)})
 
 
 def ckNuestrasOficinas(request):
@@ -78,7 +78,7 @@ def ckNuestrasOficinas(request):
     
 
 def NuestrosServicios(request):
-    return render (request, "App_Tienda/servicios.html")
+    return render (request, "App_Tienda/servicios.html", {"avatar": obtenerAvatar(request)})
 
 
 def ckNuestrosServicios(request):
@@ -109,26 +109,7 @@ def ckeditor(request):
 @login_required
 def editarPerfil(request):
 
-    User = request.user
-
-    if request.method == 'POST':
-        miFormulario = UserEditForm(request.POST)
-        if miFormulario.is_valid:
-
-            informacion = miFormulario.cleaned_data
-
-            # Datos que se modificarán
-            User.email = informacion['email']
-            User.password1 = informacion['password1']
-            User.password2 = informacion['password1']
-            User.save()
-
-            return render(request, "AppTienda/editarPerfil.html")
-    else:
-        miFormulario = UserEditForm(initial={'email': User.email})
-
-    return render(request, "AppTienda/editarPerfil.html", {"miFormulario": miFormulario, "usuario": User})
-
+    return render (request, "App_Tienda/inicio.html" )
 
 @login_required
 def agregarAvatar(request):
@@ -156,13 +137,13 @@ def obtenerAvatar(request):
     if len(lista) != 0:
         imagen=lista[0].imagen.url
     else:
-        imagen = "/media/avatares/defecto.png"
+        imagen = "/media/avatares/logopordefecto.png"
     return imagen
 
 
 def urlImagen():
 
-    return "/media/logo.png"
+    return "/media/logo1.png"
 
 
 def logout(request):
