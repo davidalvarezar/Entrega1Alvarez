@@ -26,6 +26,7 @@ urlpatterns = [
     path("App_Tienda/", include("App_Tienda.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path("App_Mensajeria/", include("App_Mensajeria.urls")),
+    path("App_Blog/", include("App_Blog.urls")),
     
 
 ]

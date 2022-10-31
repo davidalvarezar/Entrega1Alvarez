@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+  {% load static %}
+  {% if  request.user.is_authenticated %}
+
+<title>NUESTRO BLOG</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{% static 'App_Blog/style.css' %}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/arial.js"></script>
+<script type="text/javascript" src="js/cuf_run.js"></script>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/radius.js"></script>
+
+  {% endif %}
+</head>
+
+<body>
+<!-- START PAGE SOURCE -->
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li class="to-section"><a href="{% url 'inicio' %}">HOME</a></li>
+          <li><a href="{% url 'SobreNosotros_uno' %}">SOBRE NOSOTROS</a></li>
+          <li><a href="{% url 'NuestrosServicios' %}">SERVICIOS</a></li>
+          <li><a href="{% url 'NuestrasOficinas_uno' %}">NUESTRAS OFICINAS</a></li>
+          
+        </ul>
+      </div>
+      <div class="logo">
+        <h1> NUESTRO<span> BLOG</span></h1>
+        <p><h4><strong>Aprende más sobre temas empresariales de forma práctica y cercana.</strong></h4></p>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2><span>Nueva era</span> organizacional</h2>
+          <div class="clr"></div>
+          <p><span class="date">On 27 Sept 2022</span> Posted by Cristina</p>
+          <img src="https://blog.peoplenext.com/hubfs/Imported_Blog_Media/Liderando-en-la-nueva-era-de-los-RRHH_imgdest-2.jpg" width="300" height="205" alt="" class="fl" />
+          <p><h3>Claves para desarrollar un negocio en esta nueva realidad.</h3> </p>
+          <br />
+          <br />
+          <br />
+          <br />
+          <p class="btn btn-primary"><a href="{% url 'post_detail' %}">Leer más -></a></p>
+        </div>
+        <div class="article">
+          <h2><span>El futuro de Data Analytics en las PYMES.
+          </span></h2>
+          <div class="clr"></div>
+          <p><span class="date">On 29 Sept 2022</span> Posted by Superuser</p>
+          <img src="https://prod-discovery.edx-cdn.org/media/programs/card_images/e78d61bc-aa9d-417f-b244-fed28f5737b6-42e63d68ef81.jpeg" width="300" height="205" alt="" class="fl" />
+          <p><h3>El futuro de Data Analytics en las PYMES. 7 claves por las que el Data Analytics es el complemento perfecto para las PYMEs.</h3></p>
+          <br />
+          <br />
+          <br />
+          <br />
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p>
+        </div>
+        <div class="article">
+          <h2><span>Emprender un nuevo negocio </span></h2>
+          <div class="clr"></div>
+          <p><span class="date">On 19 Sept 2022</span> Posted by Admin</p>
+          <img src="https://pqs.pe/wp-content/uploads/2022/01/PQS-emprendimiento-negocio.jpg" width="300" height="205" alt="" class="fl" />
+          <p><h3>¿Quieres emprender? Ventajas y retos que debes afrontar.</h3> </p>
+          <br />
+          <br />
+          <br />
+          <br />
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p>
+        </div>
+        <div class="article">
+          <h2><span>¿Qué es y qué hace un asesor financiero?</span></h2>
+          <div class="clr"></div>
+          <p><span class="date">On 20 Sept 2022</span> Posted by Admin</p>
+          <img src="https://konfio-blog.s3.us-west-2.amazonaws.com/wp-content/uploads/2019/06/25094612/Como-saber-si-necesitas-un-asesor-financiero.jpg" width="300" height="205" alt="" class="fl" />
+          <p><h3>Descubre qué son los asesores financieros, todas sus funciones y las ventajas de contratar a un especialista en el sector de las finanzas. Tanto si necesitas contratar a uno, como si cuentas con el perfil profesional que se requiere para convertirte en un experto.</h3></p>
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p>
+        </div>
+        <div class="article">
+          <h2><span>Qué es una idea de negocio y cómo convertirla en un modelo de negocio</span></h2>
+          <div class="clr"></div>
+          <p><span class="date">On 01 Oct 2022</span> Posted by Superuser</p>
+          <img src="https://wokiconsulting.com/blog/wp-content/uploads/2020/11/ideas-de-negocio.jpg" width="300" height="205" alt="" class="fl" />
+          <p><h3>Descubre como desarrollar ideas de negocio rentables.</h3></p>
+          <br />
+          <br />
+          <br />
+          <br />
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p>
+        </div>
+       
+      </div>
+      
+      <div class="clr"></div>
+    </div>
+  </div>
+  
+<!-- END PAGE SOURCE -->
+</body>
+</html>
