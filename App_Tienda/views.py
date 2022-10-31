@@ -28,7 +28,7 @@ def inicio(request):
 
 def login_request(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             usuario = form.cleaned_data.get("username")
             contra = form.cleaned_data.get("password")
@@ -40,9 +40,9 @@ def login_request(request):
                 return render(request, "App_Tienda/inicio.html")
         else:
             return render(request, "App_Tienda/inicio.html", {"Mensaje": "Usuario o contraseña incorrectos"})
-    else:
-        form = AuthenticationForm()
-        return render(request, "App_Tienda/login.html", {"form": form})
+
+    form = AuthenticationForm()
+    return render(request, "App_Tienda/login.html", {"form": form})
 
 
 def register(request):
