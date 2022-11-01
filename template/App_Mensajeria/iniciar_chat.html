@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+<h1>Bienvenido <div id="box1"> {{user}} </div></h1>
+<h2>Con quien quieres iniciar un chat</h2>
+    
+    <div>
+<select>
+    
+    <option>-- username --</option>
+
+{% for result in displayusername %}
+
+<option> {{result.username}} </option>
+
+{% endfor %}
+</select>
+</div>
+
+<li class="to-section">
+                <a href="{% url 'inbox' %}">
+                   Volver
+
+<style>
+    #box1{
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}	
+#box1 p::first-letter {
+	font-size: 80%;text-transform: capitalize;
+}
+</style>
+{% endblock %}
