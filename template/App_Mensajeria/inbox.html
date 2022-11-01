@@ -3,10 +3,21 @@
 
 {% block content  %}
 
-    <h1>
+<h1>
             
-            Bienvenido a tu bandeja de entrada <div id="box1"> {{user}} </div>
-        </h1>
+    Bienvenido a tu bandeja de entrada <div id="box1"> {{user}} </div>
+    
+</h1>
+<div>
+<h3>
+    <li class="to-section">
+        <a href="{% url 'inicio' %}">
+           inicio
+    <li class="to-section">
+           <a href="{% url 'iniciar_chat' %}">
+              Iniciar Chat
+</h3>
+</div>
 
 
 
@@ -55,10 +66,7 @@
 
 </div>
 
-{% empty %}
-<h2>
-    Bandeja de entrada vacia
-</h2>
+
 
 {% endfor %}
 
