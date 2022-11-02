@@ -14,26 +14,26 @@
             
             <h4>{{ p.user|safe}}</h4>
 
-            <img src="https://blog.peoplenext.com/hubfs/Imported_Blog_Media/Liderando-en-la-nueva-era-de-los-RRHH_imgdest-2.jpg" width="300" height="205" alt="" class="fl"><img>
+            <img src="https://blog.peoplenext.com/hubfs/Imported_Blog_Media/Liderando-en-la-nueva-era-de-los-RRHH_imgdest-2.jpg" width="400" height="305" alt="" class="fl"><img>
 
             {{ p.cuerpo|safe }}
 
             {{ p.autor|safe }}  
 
-    <body>
+    
 
-        <form action = "" method="POST">
-                {% csrf_token %}
-                <table>
-                    {{ formulario.as_table }}
-                </table>
+        <form action = "" method="POST">{% csrf_token %}
+            
+            <table>
+                {{ comment_form.as_table }}
+            </table>
                 
-                <button type="submit" class="btn btn-primary  btn-lg">Comentar</button>
+            <button type="submit" class="btn btn-primary  btn-lg">Comentar</button>
         </form>
-    </body>    
+    {% endfor %}  
         
         </div>
 
     
-    {% endfor %}
+    
 </html>
