@@ -18,11 +18,11 @@ class Post(models.Model):
 
 
 # Para comentar las publicaciones
-'''class Comment(models.Model): 
+class Comment(models.Model): 
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     nombre = models.CharField(max_length=50)
     comentario = models.TextField(max_length=200)
     fecha = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return f'Nombre: {self.nombre} -- Comentario: {self.comentario} -- Fecha: {self.fecha}'''''
+        return f'Nombre: {self.nombre} -- Comentario: {self.comentario} -- Fecha: {self.fecha}'
