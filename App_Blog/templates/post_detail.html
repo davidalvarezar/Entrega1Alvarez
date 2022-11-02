@@ -1,34 +1,39 @@
-{% for p in post %}
+<!DOCTYPE html>
+<html lang="en">
+     
+    {% for p in post %}
 
 
-    <div class = "body">
+        <div class = "body">
 
-        <h1>{{ p.titulo|safe }}</h1>
+            <h1>{{ p.titulo|safe }}</h1>
 
-        <h2>{{ p.subtitulo|safe }}</h2>
+            <h2>{{ p.subtitulo|safe }}</h2>
 
-        <h4>{{ p.fecha|safe}}</h4>
-        
-        <h4>{{ p.user|safe}}</h4>
+            <h4>{{ p.fecha|safe}}</h4>
+            
+            <h4>{{ p.user|safe}}</h4>
 
-        <img src="/media/imagenes/{{ post.imagen }}"><img>
+            <img src="https://blog.peoplenext.com/hubfs/Imported_Blog_Media/Liderando-en-la-nueva-era-de-los-RRHH_imgdest-2.jpg" width="300" height="205" alt="" class="fl"><img>
 
-        {{ p.cuerpo|safe }}
+            {{ p.cuerpo|safe }}
 
-        {{ p.autor|safe }}  
+            {{ p.autor|safe }}  
+
+    <body>
 
         <form action = "" method="POST">
-            {% csrf_token %}
-            <table>
-                {{form.as_table}}
-            </table>
-            
-            <button type="submit" class="btn btn-primary  btn-lg">Comentar</button>
+                {% csrf_token %}
+                <table>
+                    {{ formulario.as_table }}
+                </table>
+                
+                <button type="submit" class="btn btn-primary  btn-lg">Comentar</button>
         </form>
-       
-
+    </body>    
         
-    </div>
+        </div>
 
     
-{% endfor %}
+    {% endfor %}
+</html>

@@ -2,7 +2,7 @@ from http.client import HTTPResponse
 from sre_constants import SUCCESS
 from urllib import request
 from django.shortcuts import render
-from .models import Canal, CanalMensaje, CanalUsuario
+from .models import Canal, CanalMensaje, CanalUsuario, displayusername
 from django.http import HttpResponse, Http404, JsonResponse
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from .forms import FormMensajes
 from django.views.generic.edit import FormMixin
 from django.views.generic import View
+from django.contrib.auth.models import User
 
 
 class Inbox(View):
@@ -105,3 +106,6 @@ def mensajes_privados(request, username, *args, **kwargs):
 
     return HttpResponse (f"Estas en el canal de - {canal.id}")
 
+def iniciar_chat(request):
+    displayusername = User.objects.all()
+    return render(request, 'App_Mensajeria/ms.html', {'displayusername': displayusername})

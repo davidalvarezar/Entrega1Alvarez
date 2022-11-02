@@ -84,3 +84,7 @@ class Canal(ModelBase):
 
     usuarios = models.ManyToManyField(User, blank =True, through =CanalUsuario)
     objects = CanalManager()
+
+
+class displayusername(models.Model):
+    username = models.CharField(max_length=100)

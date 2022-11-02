@@ -108,8 +108,24 @@ def ckeditor(request):
 
 @login_required
 def editarPerfil(request):
-
-    return render (request, "App_Tienda/inicio.html" )
+    usuario=request.user
+    if request.method=="POST":
+        form=UserEditForm(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            usuario.username=info["username"]
+            usuario.email=info["email"]
+            usuario.password1=info["password1"]
+            usuario.password2=info["password2"]
+            usuario.first_name=info["first_name"]
+            usuario.last_name=info["last_name"]
+            usuario.save()
+            return render(request, "App_Tienda/inicio.html", {"mensaje" : "Perfil editado correctamente", "avatar": obtenerAvatar(request)})
+        else:
+            return render(request, "App_Tienda/editarPerfil.html", {"formulario": form, "usuario": usuario , "mensaje": "FORMULARIO INVALIDO"})
+    else:
+        form=UserEditForm(instance=usuario)
+    return render (request, "App_Tienda/editarPerfil.html", {"formulario":form, "usuario":usuario} )
 
 @login_required
 def agregarAvatar(request):
@@ -123,7 +139,7 @@ def agregarAvatar(request):
             avatar = Avatar(user=request.user,
                             imagen=formulario.cleaned_data['imagen'])
             avatar.save()
-            return render(request, 'App_Tienda/inicio.html', {'usuario': request.user, 'mensaje': 'AVATR AGREGADO EXITOSAMENTE', "imagen": avatar.imagen.url})
+            return render(request, 'App_Tienda/inicio.html', {'usuario': request.user, 'mensaje': 'AVATAR AGREGADO EXITOSAMENTE', "imagen": avatar.imagen.url})
         else:
             return render(request, 'App_Tienda/agregarAvatar.html', {'formulario': formulario, 'mensaje': 'FORMULARIO INVALIDO'})
 

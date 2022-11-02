@@ -113,7 +113,9 @@
             {% if  request.user.is_authenticated %}
                <div>
                   <img height="40" src="{{ avatar }}" > 
-                  <h4>Hola {{ user.username }}</h4>
+                  <a href="{% url 'agregarAvatar' %}">Cambiar Avatar</a>
+                  <h4>Hola {{ user.username }}</h4> 
+                  <a href="{% url 'editarPerfil' %}">Editar Perfil</a>
                </div>
 
       <li class=" btn btn-info">

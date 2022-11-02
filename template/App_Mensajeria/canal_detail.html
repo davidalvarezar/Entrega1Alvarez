@@ -83,6 +83,11 @@
     <h3>Identificador de Canal: {{object.id}}</h3>
 
 <h1>MENSAJES DEL CANAL</h1>
+</li>
+<li class=" btn btn-info">
+   <a href="{% url 'inicio' %}">
+   SALIR
+   </a>
 <div id="contendor_ms">
 {% for mensaje in object.canalmensaje_set.all %}
     <div class="div_ms {% if request.user == mensaje.usuario %}mis_mensajes 
