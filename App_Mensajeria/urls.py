@@ -11,5 +11,5 @@ urlpatterns = [
     path("App_Mensajeria/<str:username>", mensajes_privados),
     path ("ms/<str:username>", DetailMs.as_view(), name="detailms"),
     path("inbox/", Inbox.as_view(), name="inbox"),
-    path("iniciar_chat/", iniciar_chat, name="iniciar_chat"),
+    path("ms/", iniciar_chat, name="ms"),
 ]

@@ -108,4 +108,4 @@ def mensajes_privados(request, username, *args, **kwargs):
 
 def iniciar_chat(request):
     displayusername = User.objects.all()
-    return render(request, 'App_Mensajeria/iniciar_chat.html', {'displayusername': displayusername})
+    return render(request, 'App_Mensajeria/ms.html', {'displayusername': displayusername})
