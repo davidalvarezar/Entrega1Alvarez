@@ -32,8 +32,13 @@
         </ul>
       </div>
       <div class="logo">
-        <h1> NUESTRO<span> BLOG</span></h1>
-        <p><h4><strong>Aprende más sobre temas empresariales de forma práctica y cercana.</strong></h4></p>
+        <br />
+        <h1> <strong>NUESTRO BLOG</strong></h1>
+        <div class="clr"></div>
+        <p><h2>Aprende más sobre temas empresariales de forma práctica y cercana.</h2></p>
+        {% block tittle %}
+          <h2><strong>{{ mensaje }}</strong></h2> 
+        {% endblock %}
       </div>
       <div class="clr"></div>
     </div>
@@ -42,7 +47,6 @@
     <div class="content_resize">
       <div class="mainbar">
         <div class="article">
-          {{ mensaje }}
           <h2><span>Nueva era organizacional</span></h2>
           <div class="clr"></div>
           <p><span class="date">On 27 Sept 2022</span> Posted by Cristina</p>
