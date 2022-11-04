@@ -16,6 +16,7 @@ class Post(models.Model):
     def __str__(self):
         return f'Título: {self.titulo} -- Autor: {self.user}'
 
+    
 
 # Para comentar las publicaciones
 class Comment(models.Model): 
@@ -26,3 +27,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Nombre: {self.nombre} -- Comentario: {self.comentario} -- Fecha: {self.fecha}'
+
+   
+
+
+
+    
+    
